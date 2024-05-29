@@ -25,6 +25,11 @@ source("2-statistical-analysis.R")
 map_dat_region <- read.csv("data/map-data-per-region.csv")
 map_dat_reef <- read.csv("data/map-data-per-reef.csv")
 
+# import Australia shapefile
+# these are data from GADM, taken from their website on 27/07/2023
+# https://gadm.org/download_country.html#google_vignette
+aus_shp <- read_sf(dsn = "data/gadm-files/gadm41_AUS_0.shp")
+
 # import GBR shapefile
 # these are data from GBRMPA, taken from eAtlas on 18/08/2023
 # https://eatlas.org.au/data/uuid/ac8e8e4f-fc0e-4a01-9c3d-f27e4a8fac3c
