@@ -1,0 +1,15 @@
+genus,species,trait,value,units,value_type,method
+Culicia,Culicia rubeola,Growth form typical,encrusting,cat,expert_opinion,Literature
+Dendrophyllia,Dendrophyllia boschmai,Growth form typical,branching_closed,cat,expert_opinion,Literature
+Dendrophyllia,Dendrophyllia cribrosa,Growth form typical,branching_closed,cat,expert_opinion,Literature
+Caryophyllia,Caryophyllia crosnieri,Growth form typical,solitary,cat,expert_opinion,Literature
+Heliopora,Heliopora coerulea1,Growth form typical,laminar,cat,expert_opinion,Literature
+Heliopora,Heliopora coerulea2,Growth form typical,columnar,cat,expert_opinion,Literature
+Heliopora,Heliopora coerulea3,Growth form typical,tables_or_plates,cat,expert_opinion,Literature
+Millepora,Millepora dichotoma,Growth form typical,tables_or_plates,cat,expert_opinion,Literature
+Millepora,Millepora exaesa,Growth form typical,encrusting,cat,expert_opinion,Literature
+Millepora,Millepora foveolata,Growth form typical,encrusting,cat,expert_opinion,Literature
+Millepora,Millepora intricata,Growth form typical,branching_closed,cat,expert_opinion,Literature
+Millepora,Millepora platyphylla,Growth form typical,tables_or_plates,cat,expert_opinion,Literature
+Millepora,Millepora tenera,Growth form typical,branching_closed,cat,expert_opinion,Literature
+Tubastraea,Tubastraea coccinea,Growth form typical,massive,cat,expert_opinion,Literature
