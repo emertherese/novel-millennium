@@ -630,8 +630,6 @@ lapply(trait_list, function(x){
 
 # there are some traits with multiple entries for same species
 # but they're all continuous traits, so we can merge by mean-ing
-
-# fully pineapple - is it as easy as always split, AND always find the mean?
 spec.means <- function(ctdb_dat){
   
   obsv <- length(ctdb_dat[,1])
@@ -668,7 +666,6 @@ spec.means <- function(ctdb_dat){
 spec_dat <- lapply(trait_list, spec.means)
 
 # calculate genus-level trait means
-# another beefy pineapple
 
 # write a function to calculate genus-level means
 # yielding a single column for continuous traits (mean trait value),
