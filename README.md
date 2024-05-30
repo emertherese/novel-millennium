@@ -1,4 +1,5 @@
 ### Taxonomic novelty emerges more frequently and independently of functional novelty in historical coral communities
+
 [![DOI](https://zenodo.org/badge/807370120.svg)](https://zenodo.org/doi/10.5281/zenodo.11392994)
 
 To replicate all analyses and figures, open `novel-millennium.Rproj` and run scripts in sequence from `1-data-preparation.R`. Each script has also been designed to run out of sequence by calling on previous code, such that you could simply open and run `3-figures.R` and create figure outputs.
