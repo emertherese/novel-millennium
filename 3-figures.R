@@ -299,8 +299,11 @@ with(aim1_dat[aim1_dat$class == "tax", ],
             cex = 1.8, pch = 21, col = "black",
             bg = c("orange", "red", cumul.col)))
 
-text(x = 0.6, y = 0.0447, cex = 1.5,
-     labels = substitute(paste(bold("A"))))
+# text(x = 0.6, y = 0.0447, cex = 1.5,
+#      labels = substitute(paste(bold("A"))))
+
+text(x = 1, y = 0.0447, cex = 1,
+     labels = substitute(paste(bold("taxonomic"))))
 
 text(x = 3.75, y = -0.006, "Novelty classification", xpd = NA)
 
@@ -338,8 +341,11 @@ with(aim1_dat[aim1_dat$class == "fun", ],
 #        legend = c("I = instantaneous", "C = cumulative", "T = true"),
 #        text.col = c("red", cumul.col, "orange"))
 
-text(x = 0.6, y = 0.0447, cex = 1.5,
-     labels = substitute(paste(bold("B"))))
+# text(x = 0.6, y = 0.0447, cex = 1.5,
+#      labels = substitute(paste(bold("B"))))
+
+text(x = 1, y = 0.0447, cex = 1,
+     labels = substitute(paste(bold("functional"))))
 
 legend("topright", cex = 1, box.lty = 0,
        legend = c(" I = instantaneous", "C = cumulative", "N = true"),
@@ -621,5 +627,99 @@ close.screen(5)
 # close and clear
 close.screen(all.screens = TRUE)
 dev.off()
+
+#
+
+#### figure S2. regional differences ####
+
+pdf(paste("figures/", Sys.Date(), "-figure-S2.pdf", sep = ""),
+    width = 8, height = 4, useDingbats = FALSE)
+
+par(mar = c(0,0,0,0), mgp = c(1.5,0.2,0), ps = 10, tcl = -0.25, las = 1, xpd = NA)
+
+split.screen(rbind(c(0.10, 0.475, 0.15, 0.90),
+                   c(0.575, 0.95, 0.15, 0.90)))
+
+# firstly find the identity of the novel communities
+tax_nov <- qld_env$sample[which(qld_env$tax_novel == 1)]
+fun_nov <- qld_env$sample[which(qld_env$fun_novel == 1)]
+
+# and parse apart their regions
+tax_nov_region <- as.factor(str_sub(tax_nov, end = 1))
+fun_nov_region <- as.factor(str_sub(fun_nov, end = 1))
+
+# A. taxonomic novelty
+
+screen(1)
+
+plot(tax_ord, 
+     type = "n", 
+     xaxt = "n", yaxt = "n",
+     xlab = "nMDS1", ylab = "nMDS2")
+
+axis(1, mgp = c(1,0.2,0))
+axis(2, mgp = c(1,0.4,0))
+
+# I'm using colour-blind safe colours from IBM Design
+# accessed via: https://www.color-hex.com/color-palette/1044488
+
+points(tax_ord,
+       pch = 19, col = alpha(c("#ffb000", "#785ef0",
+                               "#648fff", "#fe6100")[as.factor(sub_qld_dat$region)],
+                             alpha = 0.2))
+
+points(tax_ord$points[!is.na(match(row.names(tax_ord$points), 
+                                   tax_nov)), ],
+       pch = 21, col = "black", bg = c("#ffb000", "#785ef0",
+                                       "#fe6100")[as.factor(str_sub(tax_nov, end = 1))])
+
+sapply(which(tax_vec$vectors$pvals == 0.001), function(x){
+  arrows(x0 = 0, y0 = 0,
+         x1 = tax_ord$species[x, ][1], y1 = tax_ord$species[x, ][2],
+         length = 0.08)
+})
+
+# sapply(which(tax_vec$vectors$pvals == 0.001), function(x){
+#   text(x = tax_ord$species[x, ][1], y = tax_ord$species[x, ][2],
+#        labels = row.names(tax_ord$species)[x], cex = 0.75)
+# })
+
+legend("topleft", bty = "n", 
+       legend = substitute(paste(bold("taxonomic"))))
+
+close.screen(1)
+
+# B. functional novelty
+
+screen(2)
+
+plot(fun_ord, 
+     type = "n", 
+     xaxt = "n", yaxt = "n",
+     xlab = "nMDS1", ylab = "nMDS2")
+
+axis(1, mgp = c(1,0.2,0))
+axis(2, mgp = c(1,0.4,0))
+
+points(fun_ord,
+       pch = 19, col = alpha(c("#ffb000", "#785ef0",
+                               "#648fff", "#fe6100")[as.factor(sub_qld_dat$region)],
+                             alpha = 0.2))
+
+points(fun_ord$points[!is.na(match(row.names(fun_ord$points), 
+                                   fun_nov)), ],
+       pch = 21, col = "black", bg = c("#ffb000", "#785ef0",
+                                       "#648fff", "#fe6100")[as.factor(str_sub(fun_nov, end = 1))])
+
+legend("topleft", bty = "n", 
+       legend = substitute(paste(bold("functional"))))
+
+close.screen(2)
+
+# close and clear
+close.screen(all.screens = TRUE)
+dev.off()
+
+#
 
 #
