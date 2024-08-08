@@ -44,7 +44,7 @@ bin.trial <- function(bin_size){
     # calculate mean of bin range, string numbers
     bin_centre <- rowMeans(cbind(lower = as.numeric(sub("\\((.+),.*", "\\1", age_char)),
                                  upper = as.numeric(sub("[^,]*,([^]]*)\\]", "\\1", age_char))))
-    # make a matrix with coral genus relabundance for each bin year
+    # make a matrix with coral genus relative abundance for each bin year
     # ifelse does time aggregation for bins with >1 sample
     bin_mat <- sapply(split(core, f = bin_centre), function(x){
       if (!is.null(ncol(x))) {return(colSums(x))} 
@@ -107,8 +107,8 @@ bin.summary <- function(core_matrices, bin_size){
   
   # tests:
   
-  # what percentage of samples follow a large temporal gap (> 60 years)?
-  result_gap <- length(which(output$bin.lag > 60)) /
+  # what percentage of samples follow a large temporal gap (> 3*time bin size)?
+  result_gap <- length(which(output$bin.lag > (bin_size*3))) /
     length(output$bin.lag) * 100
   
   # what percentage of samples are consecutive (a single time bin apart)?
@@ -116,23 +116,20 @@ bin.summary <- function(core_matrices, bin_size){
     length(output$bin.lag) * 100
   
   # novelty detection compared to the chosen 20-year time bins
-  result_cumul <- length(which(output$cumul == TRUE))
-  result_instant <- length(which(output$instant == TRUE))
   result_novel <- length(which(output$novel == TRUE))
+  result_ratio <- length(which(output$novel == TRUE))/dim(output)[1]
     
   # summarise in a nice table
   dat <- data.frame(test = c("Time bin size",
                              "Samples following large temporal gap",
                              "Consecutive samples",
-                             "Cumulative novel communities",
-                             "Instantaneous novel communities",
-                             "True novel communities"),
+                             "True novel communities",
+                             "Ratio of novelty"),
                     result = c(bin_size,
                                round(result_gap, 2),
                                round(result_seq, 2),
-                               result_cumul,
-                               result_instant,
-                               result_novel))
+                               result_novel,
+                               result_ratio))
   
   # and show this table
   return(dat)
@@ -140,9 +137,14 @@ bin.summary <- function(core_matrices, bin_size){
 }
 
 # run using, for example, 50-year time bins
-your_bin = 50 
+
+your_bin = 50
+
+# 1. create genus matrices at the temporal grain you just set
 core_data <- bin.trial(your_bin)
+# 2. run summary statistics on the fullness of time series and rates of novelty
 core_summary <- bin.summary(core_data, your_bin)
+# 3. have a look!
 core_summary
 
 #
