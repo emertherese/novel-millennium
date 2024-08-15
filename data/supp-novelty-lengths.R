@@ -7,17 +7,17 @@ pandLong = do.call("rbind", lapply(1:length(pand2020), function(x){
 }))
 
 # time series ratio (length to bin count)
-grainToExtent = tapply(pandLong$bins, list(pandLong$site, pandLong$taxa),
-       function(x){diff(range(as.numeric(as.character(x)))) / 0.1})
-hist(grainToExtent)
-summary(as.vector(grainToExtent))
+grainToExtent_plankton = tapply(pandLong$bins, list(pandLong$site, pandLong$taxa),
+                                function(x){diff(range(as.numeric(as.character(x)))) / 0.1})
+hist(grainToExtent_plankton)
+summary(as.vector(grainToExtent_plankton))
 
 # Staples 2022
 Stap2022 <- readRDS(url("https://github.com/TimothyStaples/novel_comm_quaternary/raw/master/outputs/all%20neotoma%20novelty%20(sub-sampled).rds"))
 
 StapLong <- do.call("rbind", Stap2022$novel)
 
-grainToExtent = tapply(StapLong$bins, StapLong$site,
-                       function(x){diff(range(as.numeric(as.character(x)))) / 200})
-hist(grainToExtent)
-summary(as.vector(grainToExtent))
+grainToExtent_pollen = tapply(StapLong$bins, StapLong$site,
+                              function(x){diff(range(as.numeric(as.character(x)))) / 200})
+hist(grainToExtent_pollen)
+summary(as.vector(grainToExtent_pollen))
