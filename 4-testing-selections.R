@@ -149,6 +149,42 @@ core_summary
 
 #
 
+# how accurate are our time bin ratios across novelty detection studies?
+
+# read in the data using a separate R script
+source("data/supp-novelty-lengths.R")
+
+# this script calculates the ratio of "time series length:bin size"
+# i.e., gives X in X:1 of time scale:bin
+
+# summary of time scale:bin for Pandolfi et al. 2020
+summary(as.vector(grainToExtent_plankton)) # mean 316:1
+
+# summary of time scale:bin for Staples et al. 2022
+summary(as.vector(grainToExtent_pollen)) # mean 49:1
+
+# let's calculate similar summary statistics for this study
+grainToExtent_coral <- unlist(lapply(sorted_matrices, function(core){
+  
+  # extract the time bins from each core
+  years <- as.numeric(rownames(core))
+  
+  # calculate the extent of this time series
+  extent <- abs(max(years) - min(years))
+  
+  # divide time series length by the bin size to get the scale:bin ratio
+  ratio <- extent/20
+  
+  # and save this ratio
+  return(ratio)
+  
+}))
+
+# summary of time scale:bin for this study
+summary(grainToExtent_coral) # mean 24:1
+
+#
+
 #### testing trait methods ####
 
 # do we see a difference in the number of functional novel communities
