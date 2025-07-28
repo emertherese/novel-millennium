@@ -1,14 +1,27 @@
-### Taxonomic novelty emerges more frequently and independently of functional novelty in historical coral communities
+This repository contains the R code to replicate all analyses and figures from our paper:
 
-[![DOI](https://zenodo.org/badge/807370120.svg)](https://zenodo.org/doi/10.5281/zenodo.11392994)
+> Cunningham, E. T., T. L. Staples, I. R. Butler, M. Lepore, H. Markham Summers, G. Roff, and J. M. Pandolfi. 2024. Taxonomic novelty emerges more frequently and independently of functional novelty in historical coral communities. Oikos:e10912.
 
-To replicate all analyses and figures, open `novel-millennium.Rproj` and run scripts in sequence from `1-data-preparation.R`. Each script has also been designed to run out of sequence by calling on previous code, such that you could simply open and run `3-figures.R` and create figure outputs.
+#### Data
 
-This project considers historical corals from reef matrix cores. These reef matrix cores constitute a larger "Queensland Quaternary Core Collection", funded by the Australian Research Council and National Environmental Research Program.
+This project considers historical corals from reef matrix cores, collected across the east of so-called Australia. Thank you very much to Drs Hannah Markham Summers, George Roff, Mauro Lepore, and Ian Butler for their field work and processing.
 
-The places these corals come from, their Country, and primary researchers are acknowledged below. Please contact me (e.cunningham@uqconnect.edu.au) if you would like to learn more about the raw reef matrix core data that were processed into `sorted-matrices.RDS`. These sorted matrices show coral genus relative abundance aggregated within 20-year time bins, with one matrix per reef matrix core (n = 55).
+These cores constitute a larger *Queensland Quaternary Core Collection* funded by the Australian Research Council and National Environmental Research Program. 
 
-- Frankland Islands - Mandingalby Yidinji and Gungandji Sea Country - Dr Hannah Markham Summers
-- Palm Islands - Bwgcolman Sea Country - Dr George Roff
-- Keppel Islands - Woppaburra Sea Country - Dr Mauro Lepore
-- Hervey Bay - Badtjala Sea Country - Dr Ian Butler
+#### Acknowledging Country
+
+The corals we studied lived long lives in Sea Country. Over millennia, they have built incredible underwater places and felt changes to their homes. We pay our respect to corals, their Sea Country, and the Traditional Custodians across the Reef who are working towards a healthier future on Country.
+
+We acknowledge Mandingalby Yidinji and Gungandji Sea Country (Frankland Islands), Bwgcolman Sea Country (Palm Islands), Woppaburra Sea Country (Keppel Islands), and Butchulla Sea Country (Hervey Bay).
+
+#### Workflow
+
+Open `novel-millennium.Rproj` and run scripts in sequence from `1-data-preparation.R`. Each script has also been designed to run out of sequence by calling on previous code, such that you could simply open and run `3-figures.R` and create figure outputs.
+
+#### Graphical abstract
+
+![Graphical abstract for this paper including key findings and coral imagery.](/abstract/graphical-abstract.png)
+
+#### Any questions?
+
+Please contact me ([e.cunningham@uqconnect.edu.au](mailto:e.cunningham@uqconnect.edu.au?subject=Novel millennium enquiry)) if you would like to learn more! I am happy to chat about anything, including the raw reef matrix core data that were processed into `sorted-matrices.RDS`.
